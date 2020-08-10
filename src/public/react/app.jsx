@@ -12,7 +12,7 @@ const App = (props) => {
   }
 
   return (
-    <div>
+    <div className="container">
       <form className = "form">
         <SearchInput
           searchString = {query}

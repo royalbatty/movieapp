@@ -1,5 +1,112 @@
+@import 'variablesmixins.scss';
+
 * {
   margin: 0;
   padding: 0;
-  background-color: red;
+}
+
+.form, form {
+  display: flex;
+  flex-direction: column;
+
+  &__group, &__group--error {
+    display: block;
+    padding: 0.5em 0;
+    transition: .25s all ease-in-out;
+  }
+}
+
+
+input, select {
+  @include neuInset;
+  width: 100%;
+  padding: $padding / 2;
+  border: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  transition: .25s all ease-in-out;
+  background: linear-gradient(145deg, transparent, $gray );
+  height: $input-height;
+}
+
+input:active,
+input:focus {
+  background: #ffffff;
+  border: 0px solid $secondary;
+  transition: .25s all ease-in-out;
+  outline: none;
+}
+
+.search {
+  position: relative;
+
+  &__buttonblock {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    height: 3em;
+    margin: 0; 
+
+    & button, & span {
+      height: $input-height;
+      padding: 0 $padding;
+      margin: 0;
+      box-shadow: none;
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+    
+    & span {
+      color: $dark-on-light;
+      box-shadow: none;
+    }
+  }
+}
+
+
+button, .button {
+  transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -webkit-transition: 0.25s ease-in-out;
+  border: 0px solid transparent;
+  color: $light-on-dark;
+  font-weight: $boldWeight;
+  padding: $padding;
+  border-radius: $border-radius;
+  letter-spacing: 0.66px;
+  background: linear-gradient(145deg, $primary, $primary-darken);
+
+  &:hover {
+    cursor: pointer;
+    cursor: hand;
+    background-color: $primary-lighten;
+    border-color: $primary;
+    transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -webkit-transition: 0.25s ease-in-out;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0px 3px $secondary;
+    outline: none;
+  }
+
+  &--disabled, &--disabled:hover, &--disabled:focus {
+    @include neuOutset;
+    border: none;
+    color: $gray-darken;
+    background-color: $gray;
+    background: $gray;
+  }
+
+  &--textonly {
+    background: none;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      border: none;
+    }
+  }
 }

@@ -1,0 +1,34 @@
+$black: #004040;
+$light-on-dark: rgba(255,255,255,0.85);
+$dark-on-light: rgba(0, 64, 64, 0.85);
+$primary: #00b359;
+$primary-darken: #009a4c;
+$primary-lighten: #00cd66;
+$secondary: #b35900;
+$colored-light-bg: #f2e3d4;
+$gray: #e0e0e0;
+$gray-darken: #a4a4a4;
+$input-height: 40px;
+
+$highlight: rgba(255,255,255,0.35);
+$lowlight: rgba(0, 64, 64, 0.35);
+
+@mixin neuInset {
+  box-shadow: inset 2px 2px 4px $lowlight, 
+            inset -3px -3px 4px $highlight;
+  transition: all .25s ease-in-out;
+}
+
+@mixin neuOutset {
+  box-shadow: 3px 3px 4px $lowlight, 
+            -3px -3px 4px $highlight;
+  transition: all .25s ease-in-out;
+}
+
+
+$boldWeight: 700;
+$blackWeight: 900;
+$normalWeight: 300;
+
+$border-radius: 4px;
+$padding: 16px;

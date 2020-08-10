@@ -11,14 +11,16 @@ const App = (props) => {
 
   return (
     <div>
-       <SearchInput
-        searchString = {query}
-        onQueryChange = {(e) => {
-          setQuery(e.target.value);
-          doSearch(e.target.value)
-        }}
-        clearSearch = {() => { setQuery("") }}
-      />
+      <form className = "form">
+        <SearchInput
+          searchString = {query}
+          onQueryChange = {(e) => {
+            setQuery(e.target.value);
+            doSearch(e.target.value)
+          }}
+          clearSearch = {() => { setQuery("") }}
+        />
+      </form>
 
     </div>
   )

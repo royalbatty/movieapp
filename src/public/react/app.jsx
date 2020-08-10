@@ -1,11 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
+import SearchInput from './SearchInput';
 
-function App(props) {
-  console.log("App rendering");
+const App = (props) => {
+
+  const [query, setQuery] = useState("");
+
+  const doSearch = function(value) {
+   console.log("To do!");
+  }
 
   return (
     <div>
-      <h1>Hello Lattice</h1>
+       <SearchInput
+        searchString = {query}
+        onQueryChange = {(e) => {
+          setQuery(e.target.value);
+          doSearch(e.target.value)
+        }}
+        clearSearch = {() => { setQuery("") }}
+      />
+
     </div>
   )
 }

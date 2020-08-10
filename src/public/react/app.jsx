@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SearchInput from './SearchInput';
 import MovieList from './MovieList';
+import { apikey } from '../../../config.js';
 
 const App = (props) => {
 
@@ -10,6 +11,14 @@ const App = (props) => {
   const doSearch = function(value) {
    console.log("To do!");
   }
+
+  useEffect(()=> {
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=1`)
+    .then( res => res.json())
+    .then( movies => setMovieList(movies.results))
+    },
+    []
+  )
 
   return (
     <div className="container">

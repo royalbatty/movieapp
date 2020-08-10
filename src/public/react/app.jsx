@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import SearchInput from './SearchInput';
+import MovieList from './MovieList';
 
 const App = (props) => {
 
   const [query, setQuery] = useState("");
+  const [movieList, setMovieList] = useState(["One", "Two", "Three"]);
 
   const doSearch = function(value) {
    console.log("To do!");
@@ -22,6 +24,7 @@ const App = (props) => {
         />
       </form>
 
+      <MovieList movieListData={movieList} />
     </div>
   )
 }

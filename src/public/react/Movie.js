@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { apikey } from '../../../config.js';
+import GenreList from './GenreList';
 
 const Movie = () => {
 
@@ -15,9 +16,19 @@ const Movie = () => {
     []
   )
 
+
   return (
     <div>
       <h1>{movie.title}</h1>
+      {movie.release_date}
+
+      {
+        movie.genres ? 
+        <GenreList genres={movie.genres} />
+        :
+        ""
+      }
+
     </div>
   )
 }

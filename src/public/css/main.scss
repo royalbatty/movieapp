@@ -32,8 +32,8 @@ li a {
 ul li {
   list-style-type: none;
   padding: 1em 0;
-  border-bottom: 1px solid $gray;
 }
+
 
 .listentry {
   &__title {
@@ -44,6 +44,11 @@ ul li {
   &__overview {
     display: block;
     font-size: 85%;
+  }
+
+  &--inline {
+    display: inline;
+    padding: $padding;
   }
 }
 

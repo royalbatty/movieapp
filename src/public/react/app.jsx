@@ -6,7 +6,7 @@ import { apikey } from '../../../config.js';
 const App = (props) => {
 
   const [query, setQuery] = useState("");
-  const [movieList, setMovieList] = useState(["One", "Two", "Three"]);
+  const [movieList, setMovieList] = useState([{}]);
 
   const doSearch = function(value) {
    console.log("To do!");

@@ -5,7 +5,6 @@
   padding: 0;
 }
 
-
 html, body {
   color: $black;
   font-size: 16px;
@@ -16,17 +15,36 @@ html, body {
   height: 100%;
 }
 
+
+a {
+ text-decoration: none;
+}
+
+li a {
+  color: $black;
+}
+
 .container {
   margin: 0 auto;
   max-width: 960px;
 }
 
-
-
 ul li {
   list-style-type: none;
   padding: 1em 0;
   border-bottom: 1px solid $gray;
+}
+
+.listentry {
+  &__title {
+    display: block;
+    font-weight: $boldWeight;
+  }
+
+  &__overview {
+    display: block;
+    font-size: 85%;
+  }
 }
 
 

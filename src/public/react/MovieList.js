@@ -1,5 +1,4 @@
 import React from "react"; 
-// http://image.tmdb.org/t/p/original/{movie.poster_path}
 const MovieList = ({movieListData}) => (
   <ul>
     {movieListData.map( (movie, index) => 

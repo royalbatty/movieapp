@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../public/react/app';
 
-describe('Movie List Explorer', () => {
+describe('App Component', () => {
   let wrapper;
   
   beforeEach(() => {

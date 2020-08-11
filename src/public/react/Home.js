@@ -7,7 +7,7 @@ export const getPopularMovies = async function(callback) {
   return await fetch(`/api/movies`)
   .then( res => res.json())
   .then( movies => callback(movies.results))
-  .catch((err) => {throw new Error(error)})
+  .catch((error) => {throw new Error(error)})
 }
 
 const Home = (props) => {
@@ -21,7 +21,7 @@ const Home = (props) => {
     fetch(`/api/search/${query}`)
     .then( res => res.json() )
     .then( movies => setMovieList(movies.results))
-    .catch((err) => {throw new Error(error)})
+    .catch((error) => {throw new Error(error)})
   }
 
   useEffect(()=> getPopularMovies(setMovieList),[]);

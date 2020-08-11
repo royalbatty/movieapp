@@ -39,5 +39,12 @@ describe('Data fetching', () => {
   test('It should fetch data on success', () => {
     global.fetch.mockImplementationOnce();
     expect(getPopularMovies(()=>mockObj)).resolves.toEqual(mockObj);
-  })
+  });
+
+  test('should throw error on failure', async () => {
+    const errorMessage = 'Network Error';
+    global.fetch.mockImplementationOnce(() => Promise.reject(new Error(errorMessage)));
+    expect(getPopularMovies(null)).rejects.toThrow(errorMessage);
+  });
+
 });

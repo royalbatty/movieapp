@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import SearchInput from './SearchInput';
 import MovieList from './MovieList';
+import Loader from './Loader';
 
 const Home = (props) => {
 
   const [query, setQuery] = useState("");
-  const [movieList, setMovieList] = useState([{}]);
+  const [movieList, setMovieList] = useState([]);
 
   const doSearch = function(e) {
     e.preventDefault();
-    console.log("Do Search");
-   fetch(`/api/search/${query}`)
-   .then( res => res.json())
-   .then( movies => setMovieList(movies.results))
+    setMovieList([]);
+    fetch(`/api/search/${query}`)
+    .then( res => res.json())
+    .then( movies => setMovieList(movies.results))
   }
 
   useEffect(()=> {
@@ -25,7 +26,10 @@ const Home = (props) => {
 
   return (
     <div className="container">
-      <form className="form" onSubmit={(e) => doSearch(e)}>
+
+    <h1>Movie List</h1>
+
+     <form className="form" onSubmit={(e) => doSearch(e)}>
         <SearchInput
           searchString = {query}
           onQueryChange = {(e) => {
@@ -35,7 +39,14 @@ const Home = (props) => {
           clearSearch = {() => { setQuery("") }}
         />
       </form>
-      <MovieList movieListData={movieList} />
+
+      
+      { movieList.length === 0 ? 
+        <Loader />
+        :
+        <MovieList movieListData={movieList} />
+      }
+     
     </div>
   )
 }

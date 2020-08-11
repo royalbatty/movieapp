@@ -26,6 +26,7 @@ li a {
 }
 
 .container {
+  padding: $padding;
   margin: 0 auto;
   max-width: 960px;
 }
@@ -136,12 +137,22 @@ input:focus {
 }
 
 .loader {
-  height: $padding * 3;
-  width: $padding * 3;
-  display: block;
-  background-color: $primary;
-  border-radius: 100%;
-  animation: loadpulse 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padding;
+  
+  &__animation {
+    height: $padding * 3;
+    width: $padding * 3;
+    display: block;
+    background-color: $primary;
+    border-radius: 100%;
+    animation: loadpulse 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+
+
 }
 
 @keyframes loadpulse {

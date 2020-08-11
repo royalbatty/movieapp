@@ -13,7 +13,7 @@ const Home = (props) => {
   }
 
   useEffect(()=> {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=1`)
+    fetch(`/api/movies`)
     .then( res => res.json())
     .then( movies => setMovieList(movies.results))
     },

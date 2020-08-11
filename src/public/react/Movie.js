@@ -23,7 +23,7 @@ const MovieInfo = ({movie}) => (
 
 const Movie = () => {
 
-  const { id } = useParams();
+  const {id} = useParams();
   const [movie, setMovie] = useState({});
  
   useEffect(()=> {
@@ -35,7 +35,14 @@ const Movie = () => {
   )
 
   return (
-    <div className="splashbg" style={{ "backgroundImage": `url(http://image.tmdb.org/t/p/original${movie.poster_path})` }}>
+    <div 
+      className="splashbg" 
+      style={
+        movie.poster_path ? 
+        { "backgroundImage": `url(http://image.tmdb.org/t/p/original${movie.poster_path})` }
+        :
+        null
+      }>
   
       { movie.title === undefined ? 
         <Loader />

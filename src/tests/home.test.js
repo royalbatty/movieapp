@@ -1,15 +1,29 @@
 import React from 'react';
+import regeneratorRuntime from 'regenerator-runtime';
 import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import Home from '../public/react/Home';
+import Home, { getPopularMovies } from '../public/react/Home';
 
-global.fetch = jest.fn(() => Promise.resolve(mockResponse));
-let mockResponse =  { results: [
+const mockData = { results: [
   {id: 1, title: "Bob", overview: "Dole" },
   {id: 2, title: "Bob", overview: "Dylan" },
   {id: 3, title: "Bob", overview: "Dole" },
 ]};
+
+const mockObj = { json: () => mockData }
+
+let oldFetch;
+
+beforeAll(()=> {
+  oldFetch = global.fetch;
+  global.fetch = jest.fn(() => Promise.resolve(mockObj));
+});
+
+afterAll(() => {
+  global.fetch = oldFetch;
+});
+
 
 describe('Home Component', () => {
   let wrapper;
@@ -22,48 +36,8 @@ describe('Home Component', () => {
 
 
 describe('Data fetching', () => {
-  test('It fetches data on mount', () => {  
-    let wrapper;
-    global.fetch = jest.fn(() => Promise.resolve(mockResponse));
-    act(()=> {
-      wrapper = mount(<Home />);
-    });
-    wrapper.contains("Bob");
+  test('It should fetch data on success', () => {
+    global.fetch.mockImplementationOnce();
+    expect(getPopularMovies(()=>mockObj)).resolves.toEqual(mockObj);
   })
-});
-
-
-describe('Search bar', () => {
-  let container;
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, "useState");
-  useStateSpy.mockImplementation((init) => [init, setState]);
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-    act(()=> {
-      ReactDOM.render(<Home />, container);
-    });
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-    document.body.removeChild(container);
-    container = null;
-  });
-
-  test('It should capture user input when typed in', () => {
-    const input = container.querySelector('input');
-    input.dispatchEvent(new Event('change', {value: 'Django'}))
-    expect(setState).toHaveBeenCalledWith('Django');
-  })
-
- test('Submitting the form should fetch data', () => {
-    mockResponse =  { results: [
-      {id: 1, title: "Janet", overview: "Jackson" },
-      {id: 2, title: "Janet", overview: "Fish" },
-    ]};
-  })
-
 });

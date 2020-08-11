@@ -3,6 +3,12 @@ import SearchInput from './SearchInput';
 import MovieList from './MovieList';
 import Loader from './Loader';
 
+export const getPopularMovies = async function(callback) {
+  return await fetch(`/api/movies`)
+  .then( res => res.json())
+  .then( movies => callback(movies.results))
+}
+
 const Home = (props) => {
 
   const [query, setQuery] = useState("");
@@ -12,17 +18,11 @@ const Home = (props) => {
     e.preventDefault();
     setMovieList([]);
     fetch(`/api/search/${query}`)
-    .then( res => res.json())
-    .then( movies => setMovieList(movies.results))
+    .then( res => res.json() )
+    .then( movies => setMovieList(movies.results) )
   }
 
-  const getPopularMovies = function() {
-    fetch(`/api/movies`)
-    .then( res => res.json())
-    .then( movies => setMovieList(movies.results))
-  }
-
-  useEffect(()=> getPopularMovies(),[]);
+  useEffect(()=> getPopularMovies(setMovieList),[]);
 
   return (
     <div className="container">

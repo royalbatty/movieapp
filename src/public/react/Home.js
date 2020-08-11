@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchInput from './SearchInput';
 import MovieList from './MovieList';
-import { apikey } from '../../../config.js';
 
 const Home = (props) => {
 

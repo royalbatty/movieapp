@@ -9,9 +9,9 @@ const Movie = () => {
   const [movie, setMovie] = useState({});
  
   useEffect(()=> {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`)
+    fetch(`/api/movies/${id}`)
     .then( res => res.json())
-    .then( movie => {console.log(movie); setMovie(movie)})
+    .then( movie => setMovie(movie))
     },
     []
   )

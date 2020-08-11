@@ -3,6 +3,13 @@ import SearchInput from './SearchInput';
 import MovieList from './MovieList';
 import Loader from './Loader';
 
+export const getPopularMovies = async function(callback) {
+  return await fetch(`/api/movies`)
+  .then( res => res.json())
+  .then( movies => callback(movies.results))
+  .catch((error) => {throw new Error(error)})
+}
+
 const Home = (props) => {
 
   const [query, setQuery] = useState("");
@@ -12,17 +19,18 @@ const Home = (props) => {
     e.preventDefault();
     setMovieList([]);
     fetch(`/api/search/${query}`)
-    .then( res => res.json())
+    .then( res => res.json() )
     .then( movies => setMovieList(movies.results))
+    .catch((error) => {throw new Error(error)})
   }
 
   useEffect(()=> {
-    fetch(`/api/movies`)
-    .then( res => res.json())
-    .then( movies => setMovieList(movies.results))
-    },
-    []
-  )
+    async function fetchData() {
+      await getPopularMovies(setMovieList)
+    };
+    fetchData();
+    }
+    ,[]);
 
   return (
     <div className="container">
@@ -35,7 +43,7 @@ const Home = (props) => {
           onQueryChange = {(e) => {
             setQuery(e.target.value);
           }}
-          doSearch = {() => {doSearch()}}
+          doSearch = {doSearch}
           clearSearch = {() => { setQuery("") }}
         />
       </form>

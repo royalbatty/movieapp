@@ -135,6 +135,32 @@ input:focus {
   }
 }
 
+.loader {
+  height: $padding * 3;
+  width: $padding * 3;
+  display: block;
+  background-color: $primary;
+  border-radius: 100%;
+  animation: loadpulse 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes loadpulse {
+  0% {
+    transform: scale(0.33);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.66);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 
 button, .button {
   transition: 0.25s ease-in-out;

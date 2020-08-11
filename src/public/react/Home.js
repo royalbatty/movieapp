@@ -16,13 +16,13 @@ const Home = (props) => {
     .then( movies => setMovieList(movies.results))
   }
 
-  useEffect(()=> {
+  const getPopularMovies = function() {
     fetch(`/api/movies`)
     .then( res => res.json())
     .then( movies => setMovieList(movies.results))
-    },
-    []
-  )
+  }
+
+  useEffect(()=> getPopularMovies(),[]);
 
   return (
     <div className="container">

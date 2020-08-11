@@ -12,18 +12,7 @@ const mockData = { results: [
 ]};
 
 const mockObj = { json: () => mockData }
-
 let oldFetch;
-
-beforeAll(()=> {
-  oldFetch = global.fetch;
-  global.fetch = jest.fn(() => Promise.resolve(mockObj));
-});
-
-afterAll(() => {
-  global.fetch = oldFetch;
-});
-
 
 describe('Home Component', () => {
   let wrapper;
@@ -36,15 +25,33 @@ describe('Home Component', () => {
 
 
 describe('Data fetching', () => {
+
+  beforeAll(()=> {
+    oldFetch = global.fetch;
+    global.fetch = jest.fn(() => Promise.resolve({ json: () => mockObj }));
+  });
+
+  afterAll(() => {
+    global.fetch = oldFetch;
+  });
+
+
+  let container;
   test('It should fetch data on success', () => {
     global.fetch.mockImplementationOnce();
     expect(getPopularMovies(()=>mockObj)).resolves.toEqual(mockObj);
   });
 
-  test('should throw error on failure', async () => {
+  test('It should throw error on failure', async () => {
     const errorMessage = 'Network Error';
     global.fetch.mockImplementationOnce(() => Promise.reject(new Error(errorMessage)));
     expect(getPopularMovies(null)).rejects.toThrow(errorMessage);
   });
+
+  xtest('It should perform searches', () => {
+  })
+
+  xtest('It should call onSubmit prop when the form is submitted', done => { 
+  })
 
 });

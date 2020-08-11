@@ -24,7 +24,13 @@ const Home = (props) => {
     .catch((error) => {throw new Error(error)})
   }
 
-  useEffect(()=> getPopularMovies(setMovieList),[]);
+  useEffect(()=> {
+    async function fetchData() {
+      await getPopularMovies(setMovieList)
+    };
+    fetchData();
+    }
+    ,[]);
 
   return (
     <div className="container">
@@ -37,7 +43,7 @@ const Home = (props) => {
           onQueryChange = {(e) => {
             setQuery(e.target.value);
           }}
-          doSearch = {() => {doSearch()}}
+          doSearch = {doSearch}
           clearSearch = {() => { setQuery("") }}
         />
       </form>

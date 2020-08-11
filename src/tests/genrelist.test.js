@@ -6,7 +6,7 @@ describe('Genre Component', () => {
   
   beforeEach(() => {
     const genreList = [{
-     id: 1,
+      id: 1,
       name: "Drama"
     }];
     wrapper = mount(<GenreList genres={genreList} />);

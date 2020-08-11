@@ -1,6 +1,6 @@
 import React from "react"; 
 
-const SearchInput = ({searchString, onQueryChange, clearSearch}) => (
+const SearchInput = ({searchString, onQueryChange, clearSearch, doSearch}) => (
   <div className="form__group search">
     <input
       type="text"
@@ -10,7 +10,7 @@ const SearchInput = ({searchString, onQueryChange, clearSearch}) => (
     />
     <div className='search__buttonblock'>
       <span className='button button--textonly' onClick={clearSearch}> &times;</span>
-      <button className='button--primary'>Go</button>
+      <button className='button button--primary'>Go</button>
     </div>
   </div>
 );

@@ -7,8 +7,12 @@ const Home = (props) => {
   const [query, setQuery] = useState("");
   const [movieList, setMovieList] = useState([{}]);
 
-  const doSearch = function(value) {
-   console.log("To do!");
+  const doSearch = function(e) {
+    e.preventDefault();
+    console.log("Do Search");
+   fetch(`/api/search/${query}`)
+   .then( res => res.json())
+   .then( movies => setMovieList(movies.results))
   }
 
   useEffect(()=> {
@@ -21,13 +25,13 @@ const Home = (props) => {
 
   return (
     <div className="container">
-      <form className = "form">
+      <form className="form" onSubmit={(e) => doSearch(e)}>
         <SearchInput
           searchString = {query}
           onQueryChange = {(e) => {
             setQuery(e.target.value);
-            doSearch(e.target.value)
           }}
+          doSearch = {() => {doSearch()}}
           clearSearch = {() => { setQuery("") }}
         />
       </form>

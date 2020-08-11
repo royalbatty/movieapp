@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import GenreList from '../public/react/GenreList';
 
 describe('Genre Component', () => {

@@ -16,19 +16,20 @@ const Movie = () => {
     []
   )
 
-
   return (
-    <div>
+    <div className="splashbg">
       <h1>{movie.title}</h1>
-      {movie.release_date}
-
+      <p>{movie.tagline}</p>
+      {movie.status}  {movie.release_date}
       {
         movie.genres ? 
         <GenreList genres={movie.genres} />
         :
         ""
       }
-
+      <p>
+        {movie.overview}
+      </p>
     </div>
   )
 }
